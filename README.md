@@ -17,4 +17,5 @@
 
 ##Python script
 1. Make sure to follow the installation instructions for quick2wire-python-api
-2. 
+2. Direct the import path towards quick2wire-python-api at the top of the script incase the module was not imported properly on first try.
+3. Run the script

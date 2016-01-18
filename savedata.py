@@ -27,7 +27,7 @@ def getadcreading(address, channel):
 	v =(t*0.003472825143254)
 	return v
 
-#returns a list with two lists containing sample data
+#returns a list containing sample data
 def getSamples():
 	i=0
 	list1 = []

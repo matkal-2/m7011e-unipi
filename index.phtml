@@ -1,0 +1,74 @@
+<?php
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = 'MammaMu';
+
+	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+
+	if(!$conn){
+		die('could not connect: ' . mysql_error());
+	}
+
+	$date = $_GET('date');
+	if(!($date == "")){
+		$sql = "SELECT * FROM voltage WHERE datetime BETEWEEN '" . $date . " 00:00:00' AND '" . $date . " 23:59:59'";
+	}
+	else{
+		$sql = "SELECT * FROM voltage LIMIT 1000";
+	}
+
+	mysql_select_db('power_data');
+	$retval = mysql_query($sql, $conn);
+
+	if(!$retval){
+		die('Could not get data: ' . mysql_error());
+	}
+	
+	$emparray = array();
+	while($row = mysql_fetch_array($retval)){
+		unset($row[0]);
+		unset($row[1]);
+		unset($row[2]);
+		$emparray[] = $row;
+	}
+
+	$format = $_GET['format'];
+	if($format == "hour" && $date != ""){
+		$temp = [];
+		for($i = 0; $i < 24; $i++){
+			if(count($emparray)<60){
+				break;
+			}
+
+			$last_data = array_pop($emparray);
+			$hour = substr($last_data['datetime'], 11, 2);
+			$total_volt = (float)$last_data['voltage'];
+
+			for($j = 1; $j < 60; $j++){
+				$total_volt = $total_volt + (float)array_pop($emparray)['voltage'];
+				i++;
+			}
+		
+			$volthour = $total_volt;
+
+			$hour_data = [
+				'datetime' => $date . " " . substr($hour, 0, 2) . ":00:00" ,
+				'voltage' => $volthour,
+			];
+
+			$temp[] = $hour_data;
+			$hour = $hour - 1;
+		}
+		$emparray = array_reverse($temp);
+	}
+
+	elseif($format == "minute"){
+		for($i = 0; $i < 60; $i++){
+			$temp[] = array_pop($emparray);
+		}
+		$emparray = array_reverse($temp);
+	}
+	
+	mysql_close($conn);
+?>
+

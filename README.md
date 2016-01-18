@@ -7,6 +7,7 @@
 
 ##Python script
 * Quick2wire-python-api https://github.com/quick2wire/quick2wire-python-api/blob/master/doc/getting-started-with-i2c.md
+* PyMySQL https://github.com/PyMySQL/PyMySQL
 
 #Setup
 
@@ -18,4 +19,5 @@
 ##Python script
 1. Make sure to follow the installation instructions for quick2wire-python-api
 2. Direct the import path towards quick2wire-python-api at the top of the script incase the module was not imported properly on first try.
-3. Run the script
+3. Install PyMySQL in order to be able to store data in the database. 
+4. Run the script

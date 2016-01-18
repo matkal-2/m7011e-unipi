@@ -21,3 +21,8 @@
 2. Direct the import path towards quick2wire-python-api at the top of the script incase the module was not imported properly on first try.
 3. Install PyMySQL in order to be able to store data in the database. 
 4. Run the script
+
+#API
+* **/** - Returns the last 1000 datapoints which represent the last 1000 minutes.
+* **?date=year-month-day** - returns the every minute of sample from that specific day.
+* **?format=hour** - returns the last 24 datapoints which represent the last 24 hours.

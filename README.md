@@ -4,6 +4,7 @@
 ##Webserver
 * Python 3.0+ 
 * LAMP https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-debian
+
 ##Python script
 * Quick2wire-python-api https://github.com/quick2wire/quick2wire-python-api/blob/master/doc/getting-started-with-i2c.md
 

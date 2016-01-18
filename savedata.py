@@ -74,3 +74,6 @@ def main():
 		#computation of one minute of total voltage during that minute of data
 		voltMinute = sum(compute())
 		storeDb(voltMinute)
+		
+if __name__ == "__main__":
+    main()
